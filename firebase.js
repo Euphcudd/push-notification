@@ -1,7 +1,6 @@
-// firebase.js
 import admin from "firebase-admin";
 
-// Parse service account from env (Render needs JSON stringified in env variable)
+// Parse service account JSON string from environment variable
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 
 if (!admin.apps.length) {
