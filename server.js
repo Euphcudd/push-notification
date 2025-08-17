@@ -29,20 +29,20 @@ app.post("/send-order-notification", async (req, res) => {
     }
 
     // 2️⃣ Build FCM message
-   const message = {
+ const message = {
   notification: {
     title: "New Order Received",
-    body: `Order ID: #${orderId}\nName: ${customerName}\nInsta: ${instaHandle || "N/A"}`,
+    body: `Order #${orderId} | ${customerName} | Insta: ${instaHandle || "N/A"}`,
+    click_action: "https://retro-fifty.web.app", // ✅ must be here
+    icon: "/assets/splash.png" // optional but recommended
   },
   data: {
     orderId,
     customerName,
-    instaHandle: instaHandle || "N/A",
-    click_action: "https://retro-fifty.web.app",
+    instaHandle: instaHandle || "N/A"
   },
   tokens,
 };
-
     // 3️⃣ Send notification
     const response = await admin.messaging().sendEachForMulticast(message);
 
